@@ -1,23 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
+import Poster from './poster';
+import movieData from './MovieData';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Poster title={movieData.movies[0].title} image={movieData.movies[0].poster_path}/>
     </div>
   );
 }
