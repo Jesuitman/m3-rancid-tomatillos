@@ -43,3 +43,7 @@
   gap: 2.5%;
   justify-content: space-between; 
 }
+
+body{
+  background-color: black;
+}
