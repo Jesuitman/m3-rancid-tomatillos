@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import Poster from './poster';
-import movieData from './MovieData';
 import { useState, useEffect } from 'react';
 
 
@@ -33,8 +32,8 @@ function App() {
 
   return (
     <div className="App">
-      {movieData.map((movie, index) => (
-        <Poster key={index} title={movie.title} image={movie.poster_path} />
+      {movieData.map((movie) => (
+        <Poster key={movie.id} title={movie.title} image={movie.poster_path} />
       ))}
     </div>
   );
