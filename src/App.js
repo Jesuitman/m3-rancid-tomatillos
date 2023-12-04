@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 
 
 function App() {
-  const [movieData, setMovieData] = useState([])
-  const [error, setError] = useState(null)
+  const [movieData, setMovieData] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies/')
@@ -32,12 +32,11 @@ function App() {
 
   return (
     <div className="App">
-      {movieData.map((movie) => (
-        <Poster key={movie.id} title={movie.title} image={movie.poster_path} />
-      ))}
+      {movieData.map((movie) => {
+        <Poster key={movie.id} title={movie.title} image={movie.poster_path}/>
+      })}
     </div>
   );
 }
 
 export default App;
-
