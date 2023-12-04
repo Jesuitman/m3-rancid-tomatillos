@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import './PosterBack.css'
 
-function PosterBack({ release }) {
-    
+function PosterBack({ title, release, rating }) {
+
     return (
-        <div className='Poster_Back'>
-            <h2>{release}</h2>
+        <div className='Poster-Back'>          
+            <h2>{title}</h2>
+            <h3>Average Rating: {rating}</h3>
+            <h3>Release Date: {release}</h3>
         </div>
     )
 }

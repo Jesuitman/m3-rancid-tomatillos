@@ -32,9 +32,9 @@ function App() {
 
   return (
     <div className="App">
-      {movieData.map((movie) => {
-        <Poster key={movie.id} title={movie.title} image={movie.poster_path}/>
-      })}
+      {movieData.map((movie) => (
+        <Poster id={movie.id} title={movie.title} image={movie.poster_path}/>
+      ))}
     </div>
   );
 }
