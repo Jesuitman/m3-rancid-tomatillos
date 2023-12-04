@@ -22,7 +22,6 @@ function Poster({ title, image, id }) {
             }
           })
           .then((details) => {
-            console.log(details.movie);
              setMovieDetails(details.movie);
           })
           .catch((error) => {
