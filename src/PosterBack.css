@@ -1,0 +1,19 @@
+
+.Poster-Back {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background-color: bisque; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: black;
+  }
+
+h2 {
+    width:100%;
+}
