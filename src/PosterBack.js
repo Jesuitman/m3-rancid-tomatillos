@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import './PosterBack.css'
+import { Link } from 'react-router-dom';
 
-function PosterBack({ title, release, rating }) {
-
+function PosterBack({ title, release, rating, id }) {
     return (
         <div className='Poster-Back'>          
-            <h2>{title}</h2>
+            <Link to={`/${id}`}><h2>{title}</h2></Link>
             <h3>Average Rating: {rating}</h3>
             <h3>Release Date: {release}</h3>
         </div>

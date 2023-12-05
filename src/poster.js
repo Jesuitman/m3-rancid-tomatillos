@@ -22,7 +22,6 @@ function Poster({ title, image, id }) {
             }
           })
           .then((details) => {
-            console.log(details.movie);
              setMovieDetails(details.movie);
           })
           .catch((error) => {
@@ -42,7 +41,7 @@ function Poster({ title, image, id }) {
               <img className='Poster-Image' src={image} alt={title} />
             </div>
               {flipped && <PosterBack title={title} release={movieDetails.release_date}
-              rating={movieDetails.average_rating}/>}
+              rating={movieDetails.average_rating} id={id}/>}
           </div>
         </div>
     );
