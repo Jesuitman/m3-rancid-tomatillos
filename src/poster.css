@@ -1,12 +1,12 @@
 
 .Poster-Image {
-    height: 75%;
+    height: 100%;
     width: 75%;
 }
 
 .Poster {
     flex: 0 0 calc(18% - 2.5%); 
-    margin-bottom: 15%; 
+    margin-bottom: 20%; 
   }
 
   .Poster-Container {
