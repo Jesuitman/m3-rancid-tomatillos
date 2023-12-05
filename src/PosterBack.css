@@ -2,7 +2,7 @@
 .Poster-Back {
     position: absolute;
     width: 75%;
-    height: 75%;
+    height: 100%;
     backface-visibility: hidden;
     transform: rotateY(180deg);
     background-color: bisque; 

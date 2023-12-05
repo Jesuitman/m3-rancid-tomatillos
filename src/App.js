@@ -32,11 +32,21 @@ function App() {
 
   return (
     <div className="App">
+      <div className="header">
+        <h1 className="header-title">Rancid Tomatillos</h1>
+        <div className="buttons-container">
+          <button className="filter-button">Action</button>
+          <button className="filter-button">Adventure</button>
+          <button className="filter-button">Super Hero</button>
+          <button className="filter-button">Sci Fi</button>
+          <button className="filter-button">Rom Com</button>
+        </div>
+      </div>
       {movieData.map((movie) => (
         <Poster id={movie.id} title={movie.title} image={movie.poster_path}/>
       ))}
     </div>
   );
 }
-
+// onClick={() => handleFilter('action')
 export default App;
