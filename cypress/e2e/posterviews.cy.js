@@ -16,6 +16,6 @@ describe("Poster initial view check", ()=>{
 describe("Poster initial view check", ()=>{
   it("should be able to see the full view of the posters", ()=>{
     cy.visit("http://localhost:3000/")
-      .get("div").contains("Poster-Front")
+      .get("header").contains("h1", "Rancid Tomatillos")
   })
 })
