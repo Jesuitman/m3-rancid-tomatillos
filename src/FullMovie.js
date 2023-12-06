@@ -29,9 +29,69 @@ function FullMovie() {
         return <div className='App'>Error: {error}</div>
       }
 
-    return (
-        <h1>{movieDetails.release_date}</h1>
-    )
-}
+      const backgroundImageStyle = {
+        backgroundImage: `url(${movieDetails.backdrop_path})`
+      }
 
-export default FullMovie;
+      return (
+        <div className='background' style={backgroundImageStyle}>
+          <div className='movie-container'>
+            <div className='movie-details-box'>
+              <div className='sections-container'>
+                <section className='title-box'>
+            <h1>{movieDetails.title}</h1>
+            <h3>{movieDetails.tagline}</h3>
+                </section>
+                <section className='poster-section'>
+                  <div className='poster-container'>
+                    <img
+                      src={movieDetails.poster_path}
+                      alt={movieDetails.title}
+                      className='poster'
+                    />
+                  </div>
+                  <div className='details-section'>
+                    <p>Rated: {movieDetails.average_rating}/10</p>
+                    <p>Release Date: {movieDetails.release_date}</p>
+                    <p>Run Time: {movieDetails.runtime}</p>
+                  </div>
+                </section>
+                <section className='overview-section'>
+                  <p>{movieDetails.overview}</p>
+                  <p>Budget: ${movieDetails.budget}</p>
+                  <p>Revenue: ${movieDetails.revenue}</p>
+                  <p>Profit: ${movieDetails.revenue - movieDetails.budget}</p>
+                </section>
+                <section className='trivia-section'>
+                  <h2>Trivia</h2>
+                  {movieDetails.average_rating >= 9 ? (
+                    <p>Audiences agree that this movie is stellar!</p>
+                  ) : movieDetails.average_rating >= 7 ? (
+                    <p>Audiences thought this movie was great!</p>
+                  ) : movieDetails.average_rating >= 5 ? (
+                    <p>Audiences thought this was just okay...</p>
+                  ) : (
+                    <p>This movie is terrible!</p>
+                  )}
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      );}
+
+export default FullMovie
+
+
+{/* <div className='movie-details'>
+<div className='poster-details'>
+    <p>Rated {movieDetails.average_rating !== 0 ? `${movieDetails.average_rating}/10` : 'Value not found'}</p>
+    <p>Release Date: {movieDetails.release_date !== '' ? movieDetails.release_date : 'Date not found'}</p>
+    <p>Run Time: {movieDetails.runtime !== 0 ? `${movieDetails.runtime} min` : 'Runtime not found'}</p>
+</div>
+
+<p>{movieDetails.overview}</p>
+<p>Budget: ${movieDetails.budget !== 0 ? movieDetails.budget : 'Budget not found'}</p>
+<p>Revenue: ${movieDetails.revenue !== 0 ? movieDetails.revenue : 'Revenue not found'}</p>
+<p>Profit: ${movieDetails.revenue !== 0 && movieDetails.budget !== 0 ? movieDetails.revenue - movieDetails.budget : 'Values not found'}</p>
+</div> */}

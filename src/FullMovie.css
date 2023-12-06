@@ -1,0 +1,68 @@
+body{
+    font-family: Roboto monospace;
+}
+
+.background {
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('');
+}
+
+.movie-details-box {
+    flex: 1;
+    max-width: 35%;
+    background: linear-gradient(to bottom,#000000, #0072ff);
+    color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sections-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .poster-section {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .poster-container {
+    margin-right: 20px;
+  }
+  
+  .poster {
+    width: 200px;
+    height: auto;
+    border-radius: 10%;
+  }
+  
+  .details-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  
+  .details-section p {
+    margin: 5px 0;
+    font-size:40px;
+  }
+  
+  .overview-section {
+    width: 100%; 
+    overflow: hidden;
+    text-align: left;
+  }
+  
+  .trivia-section {
+    text-align: left;
+  }
