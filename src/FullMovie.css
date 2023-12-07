@@ -2,6 +2,10 @@ body{
     font-family: Roboto monospace;
 }
 
+.movie-container{
+    width: 100%;
+}
+
 .background {
     background-size: cover;
     background-position: center;
