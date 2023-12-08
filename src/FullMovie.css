@@ -17,6 +17,7 @@ body{
 }
 
 .movie-details-box {
+    opacity: .85;
     flex: 1;
     max-width: 35%;
     background: linear-gradient(to bottom,#000000, #0072ff);

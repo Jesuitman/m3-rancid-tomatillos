@@ -63,13 +63,13 @@ function FullMovie() {
                   <p>Profit: ${movieDetails.revenue - movieDetails.budget}</p>
                 </section>
                 <section className='trivia-section'>
-                  <h2>Trivia</h2>
+                  <h2>Personal Thoughts of Brendan and Lex</h2>
                   {movieDetails.average_rating >= 9 ? (
-                    <p>Audiences agree that this movie is stellar!</p>
+                    <p>I think that this movie is stellar!</p>
                   ) : movieDetails.average_rating >= 7 ? (
-                    <p>Audiences thought this movie was great!</p>
+                    <p>I thought this movie was great!</p>
                   ) : movieDetails.average_rating >= 5 ? (
-                    <p>Audiences thought this was just okay...</p>
+                    <p>I thought this was just okay...</p>
                   ) : (
                     <p>This movie is terrible!</p>
                   )}
@@ -81,17 +81,3 @@ function FullMovie() {
       );}
 
 export default FullMovie
-
-
-{/* <div className='movie-details'>
-<div className='poster-details'>
-    <p>Rated {movieDetails.average_rating !== 0 ? `${movieDetails.average_rating}/10` : 'Value not found'}</p>
-    <p>Release Date: {movieDetails.release_date !== '' ? movieDetails.release_date : 'Date not found'}</p>
-    <p>Run Time: {movieDetails.runtime !== 0 ? `${movieDetails.runtime} min` : 'Runtime not found'}</p>
-</div>
-
-<p>{movieDetails.overview}</p>
-<p>Budget: ${movieDetails.budget !== 0 ? movieDetails.budget : 'Budget not found'}</p>
-<p>Revenue: ${movieDetails.revenue !== 0 ? movieDetails.revenue : 'Revenue not found'}</p>
-<p>Profit: ${movieDetails.revenue !== 0 && movieDetails.budget !== 0 ? movieDetails.revenue - movieDetails.budget : 'Values not found'}</p>
-</div> */}

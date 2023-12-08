@@ -4,6 +4,7 @@ import Poster from './poster';
 
 function Home() {
     const [movieData, setMovieData] = useState([]);
+    const [filteredMovies, setFilteredMovies] = useState([])
     const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -17,12 +18,22 @@ function Home() {
       })
       .then((data) => {
         setMovieData(data.movies);
+        setFilteredMovies(data.movies)
       })
       .catch((error) => {
         setError(error.message)
         console.error('Error fetching data:', error);
       });
   }, []);
+
+
+  const filterByRating = (minRating, maxRating) => {
+    const filtered = movieData.filter(
+      (movie) => movie.rating > minRating && movie.rating <= maxRating
+    );
+    console.log(filteredMovies)
+    setFilteredMovies(filtered);
+  };
 
   if(error){
     return <div className='App'>Error: {error}</div>
@@ -32,16 +43,23 @@ function Home() {
        <div className='Home'>
         <div className="header">
         <h1 className="header-title">Rancid Tomatillos</h1>
+        <h3 className='header-title'>Show me....</h3>
         <div className="buttons-container">
-          <button className="filter-button">Action</button>
-          <button className="filter-button">Adventure</button>
-          <button className="filter-button">Super Hero</button>
-          <button className="filter-button">Sci Fi</button>
-          <button className="filter-button">Rom Com</button>
+          <button className='filter-button' onClick={() => filterByRating(1, 2)}>Rancid Movies</button>
+          <button className='filter-button' onClick={() => filterByRating(3, 4)}>Okay Movies</button>
+          <button className='filter-button' onClick={() => filterByRating(5, 6)}>Good Movies</button>
+          <button className='filter-button' onClick={() => filterByRating(7, 8)}>Great Movies</button>
+          <button className='filter-button' onClick={() => filterByRating(9, 10)}>Excellent Movies</button>
+          <button className='filter-button' onClick={() => setFilteredMovies(movieData)}>Show All Movies</button>
         </div>
       </div>
-      {movieData.map((movie) => (
-        <Poster id={movie.id} key={movie.id} title={movie.title} image={movie.poster_path}/>
+      {filteredMovies.map((movie) => (
+        <Poster
+          id={movie.id}
+          key={movie.id}
+          title={movie.title}
+          image={movie.poster_path}
+        />
       ))}
     </div>
     )
