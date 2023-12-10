@@ -6,7 +6,7 @@ function PosterBack({ title, release, rating, id }) {
     return (
         <div className='Poster-Back'>          
             <Link to={`/${id}`}><h2>{title}</h2></Link>
-            <h3>Average Rating: {rating}</h3>
+            <h3>Average Rating: {rating}/10</h3>
             <h3>Release Date: {release}</h3>
         </div>
     )
