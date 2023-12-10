@@ -58,22 +58,25 @@ Enhance collaboration and communication skills within a development team, utiliz
 #### Lex: 
 My big win for this project was getting the posterback to show when click, adding in the animation for flipping the poster was such a small thing but it felt incredible. I also was really happy when i finished the indidual poster movie view
 #### Brendan:
-
+My win for this project was understanding and implementing the Routes setup. I was able to get the titles of our movies posters to route to a new page that had access to the more detailed
+data for that movie.
 
 ### Challenges: 
 #### Lex: 
 The biggest challenge I experienced was getting Cypress to work. Once I got it working I felt so much relief. Getting to that point was a fight though.
 #### Brendan:
-
+The biggest challenge I faced was having the components properly managed and split up. Initially we had too much of our app running in the APP component and it was hard to work around that.
+Eventually we moved it out of APP and that was helpful.
 
 ## 📝 Observations && ❓ Questions
 ### Observations: 
 #### Lex: 
 This project was a lot of new technology to learn and use while implementing it. I really enjoyed the challenge and I cannot wait to get more use out of it.
 #### Brendan:
-
+The project gave us a lot of freedom to explore a new technology and it was interesting trying to think how to do tasks without using eventlisteners and queryselectors.
 
 ### Questions: 
 #### Lex: 
 I have been having issues with getting the cypress tests to pass because the filtered movie views rarely all pass at once. it feels very random and im not sure why. maybe you could provide some help for me Kayla?
 #### Brendan:
+
