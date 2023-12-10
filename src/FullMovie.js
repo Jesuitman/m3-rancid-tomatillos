@@ -1,6 +1,7 @@
 import './FullMovie.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 function FullMovie() {
   const [movieDetails, setMovieDetails] = useState({})
@@ -13,7 +14,7 @@ function FullMovie() {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error('Server Error!');
+          throw new Error(`${id} is not a valid movie ID! Try again?`);
         }
       })
       .then((details) => {
@@ -26,12 +27,16 @@ function FullMovie() {
   }, [id])
 
   if (error) {
-    return <div className='App'>Error: {error}</div>
+    return <h1 className='App'>Error: {error}</h1>
   }
 
   const backgroundImageStyle = {
     backgroundImage: `url(${movieDetails.backdrop_path})`
   }
+
+  FullMovie.propTypes = {
+    id: PropTypes.number.isRequired, 
+  };
 
   return (
     <div className='background' style={backgroundImageStyle}>

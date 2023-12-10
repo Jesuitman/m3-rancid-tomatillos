@@ -21,6 +21,126 @@ describe("It should test the application", () => {
     });
   });
 
+  describe("It should let you click the Rancid Movies Button", () =>{
+    it("should display Blowback as the first movie when Rancid Movies is clicked", ()=>{
+      cy.contains("button", "Rancid Movies")
+        .click();
+      cy.wait(1000);
+      cy.get(".Poster-Container")
+        .children()
+        .first()
+        .find(".Poster-Image")
+        .should("have.attr", "alt", "Blowback")
+        .click()
+      cy.get(".Poster-Back")
+        .contains("h2", "Blowback")
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 2")
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-06-17")
+    })
+  })
+
+  describe("It should let you click the Okay Movies Button", () =>{
+    it("should display Black Adam as the first movie when Okay Movies is clicked", ()=>{
+      cy.contains("button", "Okay Movies")
+        .click();
+      cy.wait(1000);
+      cy.get(".Poster-Container")
+        .children()
+        .first()
+        .find(".Poster-Image")
+        .should("have.attr", "alt", "Black Adam")
+        .click()
+      cy.get(".Poster-Back")
+        .contains("h2", "Black Adam")
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 4")
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-10-19")
+    })
+  })
+
+  describe("It should let you click the Good Movies Button", () =>{
+    it("should display Lyle, Lyle, Crocodile as the first movie when Good Movies is clicked", ()=>{
+      cy.contains("button", "Good Movies")
+        .click();
+      cy.wait(1000);
+      cy.get(".Poster-Container")
+        .children()
+        .first()
+        .find(".Poster-Image")
+        .should("have.attr", "alt", "Lyle, Lyle, Crocodile")
+        .click()
+      cy.get(".Poster-Back")
+        .contains("h2", "Lyle, Lyle, Crocodile")
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 6")
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-10-07")
+    })
+  })
+
+  describe("It should let you click the Great Movies Button", () =>{
+    it("should display Smile as the first movie when Great Movies is clicked", ()=>{
+      cy.contains("button", "Great Movies")
+        .click();
+      cy.wait(1000);
+      cy.get(".Poster-Container")
+        .children()
+        .first()
+        .find(".Poster-Image")
+        .should("have.attr", "alt", "Smile")
+        .click()
+      cy.get(".Poster-Back")
+        .contains("h2", "Smile")
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 8")
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-09-23")
+    })
+  })
+
+  describe("It should let you click the Excellent Movies Button", () =>{
+    it("should display On The Line as the first movie when Excellent Movies is clicked", ()=>{
+      cy.contains("button", "Excellent Movies")
+        .click();
+      cy.wait(1000);
+      cy.get(".Poster-Container")
+        .children()
+        .first()
+        .find(".Poster-Image")
+        .should("have.attr", "alt", "On The Line")
+        .click()
+      cy.get(".Poster-Back")
+        .contains("h2", "On The Line")
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 10")
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-10-3")
+    })
+  })
+
+  describe("It should let you click the Show All Movies Button", () =>{
+    it("should display On The Line as the first movie when Show All Movies is clicked", ()=>{
+      cy.contains("button", "Show All Movies")
+        .click();
+      cy.wait(1000);
+      cy.get(".Poster-Container")
+        .children()
+        .first()
+        .find(".Poster-Image")
+        .should("have.attr", "alt", "Black Adam")
+        .click()
+      cy.get(".Poster-Back")
+        .contains("h2", "Black Adam")
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 4")
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-10-19")
+    })
+  })
+
   describe("Clicking on First Poster", () => {
     it("should display 'Black Adam' when the first poster is clicked", () => {
       cy.get(".Poster-Container ")
@@ -38,7 +158,7 @@ describe("It should test the application", () => {
     });
   });
 
-  describe("Clicking on First Poster", () => {
+  describe("Clicking on Last Poster", () => {
     it("should display 'X' when the last poster is clicked", () => {
       cy.get(".Poster-Container ")
         .children()
@@ -55,7 +175,7 @@ describe("It should test the application", () => {
     });
   });
 
-  describe("Clicking on First Poster", () => {
+  describe("Clicking on First Poster for more information", () => {
     beforeEach(() => {
       cy.get(".Poster-Container")
         .children()
@@ -105,7 +225,7 @@ describe("It should test the application", () => {
     });
   });
 
-  describe("Clicking on Last Poster", () => {
+  describe("Clicking on Last Poster for more information", () => {
     beforeEach(() => {
       cy.get(".Poster-Container")
         .children()
@@ -154,3 +274,21 @@ describe("It should test the application", () => {
     });
   });
 })
+
+describe("Invalid Movie ID Handling", () => {
+  it("should display an error message for an invalid movie ID", () => {
+    const invalidMovieId = "35635262546";
+
+    cy.intercept("GET", `https://rancid-tomatillos.herokuapp.com/api/v2/movies/${invalidMovieId}`, {
+      statusCode: 404,
+      body: "Error: 35635262546 is not a valid movie ID! Try again?",
+    }).as("invalidMovieRequest");
+
+    cy.visit(`http://localhost:3000/${invalidMovieId}`);
+
+    cy.wait("@invalidMovieRequest").then((interception) => {
+      expect(interception.response.statusCode).to.eq(404);
+      cy.contains("Error: 35635262546 is not a valid movie ID! Try again?").should("be.visible");
+    });
+  });
+});

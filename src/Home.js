@@ -29,7 +29,7 @@ function Home() {
 
   const filterByRating = (minRating, maxRating) => {
     const filtered = movieData.filter(
-      (movie) => movie.rating > minRating && movie.rating <= maxRating
+      (movie) => movie.average_rating > minRating && movie.average_rating <= maxRating
     );
     console.log(filteredMovies)
     setFilteredMovies(filtered);
