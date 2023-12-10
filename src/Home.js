@@ -31,7 +31,6 @@ function Home() {
     const filtered = movieData.filter(
       (movie) => movie.average_rating > minRating && movie.average_rating <= maxRating
     );
-    console.log(filteredMovies)
     setFilteredMovies(filtered);
   };
 
