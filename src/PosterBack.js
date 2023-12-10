@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './PosterBack.css'
 import { Link } from 'react-router-dom';
 
