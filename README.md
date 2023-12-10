@@ -19,7 +19,7 @@ The final phase focuses on implementing filter buttons, enabling users to catego
 7. Click around and see all of the different movies!
 
 ## 📷 Preview of App
-![sample video of the project](https://github.com/Jesuitman/m2-rancid-tomatillos/blob/main/Rancid%20Tomatillos%20gif.gif)
+![sample video of the project]([https://github.com/Jesuitman/m2-rancid-tomatillos/blob/main/Rancid%20Tomatillos%20gif.gif](https://github.com/Jesuitman/m3-rancid-tomatillos/blob/main/ezgif-1-a2537a03b6.gif?raw=true))
 
 ## 🍎 Context
 We worked fast to make sure we could tackle each challenge early and give plenty of time for refactoring and error handling. We were given 10 days to work on the project and spent about 50 hours totla between the both of us making sure it worked. The most difficult part was the cypress testing which was a lot of new syntax to learn.
