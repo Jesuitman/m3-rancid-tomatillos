@@ -69,3 +69,244 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+
+import logo from './logo.svg';
+import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import FullMovie from './FullMovie';
+import Home from './Home';
+
+function App() {
+
+  return (
+    <div className="App">
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/:id' element={<FullMovie />}></Route>
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
+
+import './Home.css';
+import { useState, useEffect} from 'react';
+import Poster from './poster';
+
+function Home() {
+    const [movieData, setMovieData] = useState([]);
+    const [filteredMovies, setFilteredMovies] = useState([])
+    const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies/')
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Server Error!');
+        }
+      })
+      .then((data) => {
+        setMovieData(data.movies);
+        setFilteredMovies(data.movies)
+      })
+      .catch((error) => {
+        setError(error.message)
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+
+  const filterByRating = (minRating, maxRating) => {
+    const filtered = movieData.filter(
+      (movie) => movie.rating > minRating && movie.rating <= maxRating
+    );
+    console.log(filteredMovies)
+    setFilteredMovies(filtered);
+  };
+
+  if(error){
+    return <div className='App'>Error: {error}</div>
+  }
+
+    return (
+       <div className='Home'>
+        <div className="header">
+        <h1 className="header-title">Rancid Tomatillos</h1>
+        <h3 className='header-title'>Show me....</h3>
+        <div className="buttons-container">
+          <button className='filter-button' onClick={() => filterByRating(1, 2)}>Rancid Movies</button>
+          <button className='filter-button' onClick={() => filterByRating(3, 4)}>Okay Movies</button>
+          <button className='filter-button' onClick={() => filterByRating(5, 6)}>Good Movies</button>
+          <button className='filter-button' onClick={() => filterByRating(7, 8)}>Great Movies</button>
+          <button className='filter-button' onClick={() => filterByRating(9, 10)}>Excellent Movies</button>
+          <button className='filter-button' onClick={() => setFilteredMovies(movieData)}>Show All Movies</button>
+        </div>
+      </div>
+      {filteredMovies.map((movie) => (
+        <Poster
+          id={movie.id}
+          key={movie.id}
+          title={movie.title}
+          image={movie.poster_path}
+        />
+      ))}
+    </div>
+    )
+}
+
+export default Home;
+
+import { useState, useEffect } from 'react';
+import PosterBack from './PosterBack';
+import './poster.css';
+
+function Poster({ title, image, id }) {
+    const [movieDetails, setMovieDetails] = useState({})
+    const [flipped, setFlipped] = useState(false)
+    const [error, setError] = useState(null);
+
+    const handleFlip = () => {
+        setFlipped(!flipped);
+        getDetails()
+      };
+    
+    function getDetails() {
+        fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+        .then((response) => {
+          if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Server Error!');
+            }
+          })
+          .then((details) => {
+             setMovieDetails(details.movie);
+          })
+          .catch((error) => {
+            setError(error.message);
+            console.error('Error fetching data:', error);
+          })
+    }
+
+    if(error){
+      return <div className='App'>Error: {error}</div>
+    }
+    
+    return (
+        <div className='Poster' id={id} onClick={handleFlip}>
+          <div className={`Poster-Container ${flipped ? 'Poster-Flip' : ''}`}>
+            <div className="Poster-Front">
+              <img className='Poster-Image' src={image} alt={title} />
+            </div>
+              {flipped && <PosterBack title={title} release={movieDetails.release_date}
+              rating={movieDetails.average_rating} id={id}/>}
+          </div>
+        </div>
+    );
+}
+
+export default Poster;
+
+import { useState } from 'react';
+import './PosterBack.css'
+import { Link } from 'react-router-dom';
+
+function PosterBack({ title, release, rating, id }) {
+    return (
+        <div className='Poster-Back'>          
+            <Link to={`/${id}`}><h2>{title}</h2></Link>
+            <h3>Average Rating: {rating}</h3>
+            <h3>Release Date: {release}</h3>
+        </div>
+    )
+}
+
+export  default  PosterBack;
+
+import './FullMovie.css';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+function FullMovie() {
+    const [movieDetails, setMovieDetails] = useState({})
+    const [error, setError] = useState(null);
+    const id = useParams().id;
+
+    useEffect(() => {
+        fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+        .then((response) => {
+          if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Server Error!');
+            }
+          })
+          .then((details) => {
+             setMovieDetails(details.movie);
+          })
+          .catch((error) => {
+            setError(error.message);
+            console.error('Error fetching data:', error);
+          });
+        }, [id])
+    
+      if(error){
+        return <div className='App'>Error: {error}</div>
+      }
+
+      const backgroundImageStyle = {
+        backgroundImage: `url(${movieDetails.backdrop_path})`
+      }
+
+      return (
+        <div className='background' style={backgroundImageStyle}>
+          <div className='movie-container'>
+            <div className='movie-details-box'>
+              <div className='sections-container'>
+                <section className='title-box'>
+            <h1>{movieDetails.title}</h1>
+            <h3>{movieDetails.tagline}</h3>
+                </section>
+                <section className='poster-section'>
+                  <div className='poster-container'>
+                    <img
+                      src={movieDetails.poster_path}
+                      alt={movieDetails.title}
+                      className='poster'
+                    />
+                  </div>
+                  <div className='details-section'>
+                    <p>Rated: {movieDetails.average_rating}/10</p>
+                    <p>Release Date: {movieDetails.release_date}</p>
+                    <p>Run Time: {movieDetails.runtime}</p>
+                  </div>
+                </section>
+                <section className='overview-section'>
+                  <p>{movieDetails.overview}</p>
+                  <p>Budget: ${movieDetails.budget}</p>
+                  <p>Revenue: ${movieDetails.revenue}</p>
+                  <p>Profit: ${movieDetails.revenue - movieDetails.budget}</p>
+                </section>
+                <section className='trivia-section'>
+                  <h2>Personal Thoughts of Brendan and Lex</h2>
+                  {movieDetails.average_rating >= 9 ? (
+                    <p>I think that this movie is stellar!</p>
+                  ) : movieDetails.average_rating >= 7 ? (
+                    <p>I thought this movie was great!</p>
+                  ) : movieDetails.average_rating >= 5 ? (
+                    <p>I thought this was just okay...</p>
+                  ) : (
+                    <p>This movie is terrible!</p>
+                  )}
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      );}
+
+export default FullMovie
