@@ -1,7 +1,6 @@
 import './FullMovie.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types'
 
 function FullMovie() {
   const [movieDetails, setMovieDetails] = useState({})
@@ -33,10 +32,6 @@ function FullMovie() {
   const backgroundImageStyle = {
     backgroundImage: `url(${movieDetails.backdrop_path})`
   }
-
-  FullMovie.propTypes = {
-    id: PropTypes.number.isRequired, 
-  };
 
   return (
     <div className='background' style={backgroundImageStyle}>
@@ -87,3 +82,4 @@ function FullMovie() {
 }
 
 export default FullMovie
+

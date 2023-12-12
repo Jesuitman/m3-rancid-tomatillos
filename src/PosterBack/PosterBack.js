@@ -1,4 +1,5 @@
 import './PosterBack.css'
+import Proptypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function PosterBack({ title, release, rating, id }) {
@@ -12,3 +13,10 @@ function PosterBack({ title, release, rating, id }) {
 }
 
 export  default  PosterBack;
+
+PosterBack.propTypes = {
+    title: Proptypes.string.isRequired,
+    release: Proptypes.string,
+    rating: Proptypes.number,
+    id: Proptypes.number.isRequired
+};

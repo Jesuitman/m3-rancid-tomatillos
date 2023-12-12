@@ -2,10 +2,10 @@
 .Poster-Back {
     position: absolute;
     width: 75%;
-    height: 100%;
+    aspect-ratio: 2/3;
     backface-visibility: hidden;
     transform: rotateY(180deg);
-    background-color: bisque; 
+    background-color: rgb(36, 193, 196); 
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

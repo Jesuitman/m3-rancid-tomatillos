@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import PosterBack from './PosterBack';
+import PosterBack from '../PosterBack/PosterBack';
+import PropTypes from 'prop-types';
 import './poster.css';
 
 function Poster({ title, image, id }) {
@@ -48,3 +49,9 @@ function Poster({ title, image, id }) {
 }
 
 export default Poster;
+
+Poster.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired
+};
