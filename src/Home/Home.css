@@ -13,10 +13,11 @@
   .header {
     width: 100%;
     text-align: center;
-    margin-bottom: 20px; /* Adjust as needed */
+    margin-bottom: 20px; 
   }
   
   .header-guide {
+    margin-top: 50px;
     font-size: 24px;
     color: white;
   }
