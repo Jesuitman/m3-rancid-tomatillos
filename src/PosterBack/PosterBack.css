@@ -18,4 +18,6 @@
 h2, h3 {
     max-height: 20%;
     width:100%;
+    text-decoration: none;
+    color: inherit;
 }

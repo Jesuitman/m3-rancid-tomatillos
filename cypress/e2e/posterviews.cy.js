@@ -15,165 +15,142 @@ describe("It should test the application", () => {
     })
     cy.visit("/")
   })
+
   describe("Poster Initial View Check", () => {
     it("should be able to see the main header on the home page", () => {
       cy.get(".header-title").should("contain", "Rancid Tomatillos");
     });
   });
 
-  describe("It should let you click the Rancid Movies Button", () =>{
-    it("should display Blowback as the first movie when Rancid Movies is clicked", ()=>{
-      cy.contains("button", "Rancid Movies")
-        .click();
-      cy.wait(1000);
+  describe("It should test the application's filter rating buttons", () => {
+    it("should display Paradise City as the first movie when The Rancid Movies Button is clicked", () => {
+      cy.contains("button", "Rancid Movies").click();
       cy.get(".Poster-Container")
         .children()
         .first()
         .find(".Poster-Image")
-        .should("have.attr", "alt", "Blowback")
-        .click()
-      cy.get(".Poster-Back")
-        .contains("h2", "Blowback")
-      cy.get(".Poster-Back")
-        .contains("h3", "Average Rating: 2")
-      cy.get(".Poster-Back")
-        .contains("h3", "Release Date: 2022-06-17")
-    })
-  })
-
-  describe("It should let you click the Okay Movies Button", () =>{
-    it("should display Black Adam as the first movie when Okay Movies is clicked", ()=>{
-      cy.contains("button", "Okay Movies")
+        .should("have.attr", "alt", "Paradise City")
         .click();
-      cy.wait(1000);
+      cy.get(".Poster-Back")
+        .contains("h2", "Paradise City");
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 1");
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-11-11");
+    });
+  
+    it("should display Black Adam as the first movie when Okay Movies is clicked", () => {
+      cy.contains("button", "Okay Movies").click();
       cy.get(".Poster-Container")
         .children()
         .first()
         .find(".Poster-Image")
         .should("have.attr", "alt", "Black Adam")
-        .click()
-      cy.get(".Poster-Back")
-        .contains("h2", "Black Adam")
-      cy.get(".Poster-Back")
-        .contains("h3", "Average Rating: 4")
-      cy.get(".Poster-Back")
-        .contains("h3", "Release Date: 2022-10-19")
-    })
-  })
-
-  describe("It should let you click the Good Movies Button", () =>{
-    it("should display Lyle, Lyle, Crocodile as the first movie when Good Movies is clicked", ()=>{
-      cy.contains("button", "Good Movies")
         .click();
-      cy.wait(1000);
+      cy.get(".Poster-Back")
+        .contains("h2", "Black Adam");
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 4");
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-10-19");
+    });
+  
+    it("should display The Minute You Wake Up Dead as the first movie when Good Movies is clicked", () => {
+      cy.contains("button", "Good Movies").click();
       cy.get(".Poster-Container")
         .children()
         .first()
         .find(".Poster-Image")
-        .should("have.attr", "alt", "Lyle, Lyle, Crocodile")
-        .click()
-      cy.get(".Poster-Back")
-        .contains("h2", "Lyle, Lyle, Crocodile")
-      cy.get(".Poster-Back")
-        .contains("h3", "Average Rating: 6")
-      cy.get(".Poster-Back")
-        .contains("h3", "Release Date: 2022-10-07")
-    })
-  })
-
-  describe("It should let you click the Great Movies Button", () =>{
-    it("should display Smile as the first movie when Great Movies is clicked", ()=>{
-      cy.contains("button", "Great Movies")
+        .should("have.attr", "alt", "The Minute You Wake Up Dead")
         .click();
-      cy.wait(1000);
+      cy.get(".Poster-Back")
+        .contains("h2", "The Minute You Wake Up Dead");
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 5");
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-11-04");
+    });
+  
+    it("should display R.I.P.D. 2: Rise of the Damned as the first movie when Great Movies is clicked", () => {
+      cy.contains("button", "Great Movies").click();
       cy.get(".Poster-Container")
         .children()
         .first()
         .find(".Poster-Image")
-        .should("have.attr", "alt", "Smile")
-        .click()
-      cy.get(".Poster-Back")
-        .contains("h2", "Smile")
-      cy.get(".Poster-Back")
-        .contains("h3", "Average Rating: 8")
-      cy.get(".Poster-Back")
-        .contains("h3", "Release Date: 2022-09-23")
-    })
-  })
-
-  describe("It should let you click the Excellent Movies Button", () =>{
-    it("should display On The Line as the first movie when Excellent Movies is clicked", ()=>{
-      cy.contains("button", "Excellent Movies")
+        .should("have.attr", "alt", "R.I.P.D. 2: Rise of the Damned")
         .click();
-      cy.wait(1000);
+      cy.get(".Poster-Back")
+        .contains("h2", "R.I.P.D. 2: Rise of the Damned");
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 7");
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-11-15");
+    });
+  
+    it("should display The Soccer Football Movie as the first movie when Excellent Movies is clicked", () => {
+      cy.contains("button", "Excellent Movies").click();
       cy.get(".Poster-Container")
         .children()
         .first()
         .find(".Poster-Image")
-        .should("have.attr", "alt", "On The Line")
-        .click()
-      cy.get(".Poster-Back")
-        .contains("h2", "On The Line")
-      cy.get(".Poster-Back")
-        .contains("h3", "Average Rating: 10")
-      cy.get(".Poster-Back")
-        .contains("h3", "Release Date: 2022-10-3")
-    })
-  })
-
-  describe("It should let you click the Show All Movies Button", () =>{
-    it("should display On The Line as the first movie when Show All Movies is clicked", ()=>{
-      cy.contains("button", "Show All Movies")
+        .should("have.attr", "alt", "The Soccer Football Movie")
         .click();
-      cy.wait(1000);
+      cy.get(".Poster-Back")
+        .contains("h2", "The Soccer Football Movie");
+      cy.get(".Poster-Back")
+        .contains("h3", "Average Rating: 9");
+      cy.get(".Poster-Back")
+        .contains("h3", "Release Date: 2022-11-09");
+    });
+  
+    it("should display On The Line as the first movie when Show All Movies is clicked", () => {
+      cy.contains("button", "Show All Movies").click();
       cy.get(".Poster-Container")
         .children()
         .first()
         .find(".Poster-Image")
         .should("have.attr", "alt", "Black Adam")
-        .click()
+        .click();
       cy.get(".Poster-Back")
-        .contains("h2", "Black Adam")
+        .contains("h2", "Black Adam");
       cy.get(".Poster-Back")
-        .contains("h3", "Average Rating: 4")
+        .contains("h3", "Average Rating: 4");
       cy.get(".Poster-Back")
-        .contains("h3", "Release Date: 2022-10-19")
-    })
-  })
-
-  describe("Clicking on First Poster", () => {
-    it("should display 'Black Adam' when the first poster is clicked", () => {
-      cy.get(".Poster-Container ")
-        .children()
-        .first()
-        .find(".Poster-Image")
-        .should("have.attr", "alt", "Black Adam")
-        .click()
-      cy.get(".Poster-Back")
-        .contains("h2", "Black Adam")
-      cy.get(".Poster-Back")
-        .contains("h3", "Average Rating: 4")
-      cy.get(".Poster-Back")
-        .contains("h3", "Release Date: 2022-10-19")
+        .contains("h3", "Release Date: 2022-10-19");
     });
   });
 
-  describe("Clicking on Last Poster", () => {
-    it("should display 'X' when the last poster is clicked", () => {
-      cy.get(".Poster-Container ")
-        .children()
-        .last()
-        .find(".Poster-Image")
-        .should("have.attr", "alt", "X")
-        .click()
-      cy.get(".Poster-Back")
-        .contains("h2", "X")
-      cy.get(".Poster-Back")
-        .contains("h3", "Average Rating: 1")
-      cy.get(".Poster-Back")
-        .contains("h3", "Release Date: 2022-03-17")
-    });
+describe("It should let you click posters to view more information", () => {
+  it("should display 'Black Adam' when the first poster is clicked", () => {
+    cy.get(".Poster-Container")
+      .children()
+      .first()
+      .find(".Poster-Image")
+      .should("have.attr", "alt", "Black Adam")
+      .click();
+    cy.get(".Poster-Back")
+      .contains("h2", "Black Adam");
+    cy.get(".Poster-Back")
+      .contains("h3", "Average Rating: 4");
+    cy.get(".Poster-Back")
+      .contains("h3", "Release Date: 2022-10-19");
   });
+
+  it("should display 'X' when the last poster is clicked", () => {
+    cy.get(".Poster-Container")
+      .children()
+      .last()
+      .find(".Poster-Image")
+      .should("have.attr", "alt", "X")
+      .click();
+    cy.get(".Poster-Back")
+      .contains("h2", "X");
+    cy.get(".Poster-Back")
+      .contains("h3", "Average Rating: 1");
+    cy.get(".Poster-Back")
+      .contains("h3", "Release Date: 2022-03-17");
+  });
+});
 
   describe("Clicking on First Poster for more information", () => {
     beforeEach(() => {
