@@ -1,6 +1,6 @@
 import './Home.css';
 import { useState, useEffect} from 'react';
-import Poster from './poster';
+import Poster from '../Poster/poster';
 
 function Home() {
     const [movieData, setMovieData] = useState([]);
@@ -41,7 +41,6 @@ function Home() {
     return (
        <div className='Home'>
         <div className="header">
-        <h1 className="header-title">Rancid Tomatillos</h1>
         <h3 className='header-title'>Show me....</h3>
         <div className="buttons-container">
           <button className='filter-button' onClick={() => filterByRating(1, 2)}>Rancid Movies</button>
