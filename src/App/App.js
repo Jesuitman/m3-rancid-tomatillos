@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      <Link to={'/'}><h1 className="header-title">Rancid Tomatillos</h1></Link>
+      <h1 className="header-title"><Link to={'/'}><p>Rancid Tomatillos</p></Link></h1>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/:id' element={<FullMovie />}></Route>

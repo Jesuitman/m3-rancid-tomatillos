@@ -41,7 +41,7 @@ function Home() {
     return (
        <div className='Home'>
         <div className="header">
-        <h3 className='header-title'>Show me....</h3>
+        <h3 className='header-guide'>Show me....</h3>
         <div className="buttons-container">
           <button className='filter-button' onClick={() => filterByRating(1, 2)}>Rancid Movies</button>
           <button className='filter-button' onClick={() => filterByRating(3, 4)}>Okay Movies</button>
